@@ -21,7 +21,7 @@ public class PostCase {
   @Before
   public void setUp() throws Exception {
 	DesiredCapabilities capability = DesiredCapabilities.firefox();
-	WebDriver driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), capability);
+	driver = new RemoteWebDriver(new URL("http://192.168.1.9:4444/wd/hub"), capability);
     baseUrl = "http://realcrimetime.com/api/doc";
     driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
     driver.get(baseUrl);
@@ -32,11 +32,11 @@ public class PostCase {
  */
   @Test
   public void testPostCase() throws Exception {
-	Thread.sleep(1000);
-	driver.findElement(By.xpath("//li[@id='post--map_point-{info}-{lat}-{lng}']/div")).click();
-    Thread.sleep(1000);
+	
+    driver.findElement(By.xpath("//li[@id='post--map_point-{info}-{lat}-{lng}']/div")).click();
+    
     driver.findElement(By.xpath("//li[@id='post--map_point-{info}-{lat}-{lng}']/div[2]/ul/li[2]")).click();
-    Thread.sleep(1000);
+    
     driver.findElement(By.xpath("(//input[@type='text'])[16]")).clear();
     driver.findElement(By.xpath("(//input[@type='text'])[16]")).sendKeys("selenium est");
     driver.findElement(By.xpath("(//input[@type='text'])[18]")).clear();
@@ -44,9 +44,8 @@ public class PostCase {
     driver.findElement(By.xpath("(//input[@type='text'])[20]")).clear();
     driver.findElement(By.xpath("(//input[@type='text'])[20]")).sendKeys("16");
     driver.findElement(By.xpath("(//input[@value='Try!'])[3]")).click();
-    Thread.sleep(1000);
+    
     String result = driver.findElement(By.xpath("//li[@id='post--map_point-{info}-{lat}-{lng}']/div[2]/div/div[2]/div/pre[2]")).getText();
-    System.out.println("result");
     assertEquals("200 OK", result.substring(0, 6));
   }
 
@@ -67,13 +66,14 @@ public class PostCase {
    * Is still functional.
    */
   @Test
-  public void testPost() throws Exception {
-    driver.findElement(By.cssSelector("#get--MapPoints > div.heading.toggler > h3 > span.path")).click();
-    Thread.sleep(1000);
+  public void testGet() throws Exception {
+	
+    driver.findElement(By.cssSelector("#get--MapPoints > div.heading.toggler")).click();
+    
     driver.findElement(By.xpath("//li[@id='get--MapPoints']/div[2]/ul/li[2]")).click();
-    Thread.sleep(1000);
+    
     driver.findElement(By.xpath("(//input[@value='Try!'])[2]")).click();
-    Thread.sleep(1000);
+    
     String result = driver.findElement(By.xpath("//li[@id='get--MapPoints']/div[2]/div/div[2]/div/pre[2]")).getText();
     assertEquals("200 OK", result.substring(0, 6));
   }
