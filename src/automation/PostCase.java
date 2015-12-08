@@ -32,11 +32,8 @@ public class PostCase {
  */
   @Test
   public void testPostCase() throws Exception {
-	
     driver.findElement(By.xpath("//li[@id='post--map_point-{info}-{lat}-{lng}']/div")).click();
-    
     driver.findElement(By.xpath("//li[@id='post--map_point-{info}-{lat}-{lng}']/div[2]/ul/li[2]")).click();
-    
     driver.findElement(By.xpath("(//input[@type='text'])[16]")).clear();
     driver.findElement(By.xpath("(//input[@type='text'])[16]")).sendKeys("selenium est");
     driver.findElement(By.xpath("(//input[@type='text'])[18]")).clear();
@@ -44,7 +41,6 @@ public class PostCase {
     driver.findElement(By.xpath("(//input[@type='text'])[20]")).clear();
     driver.findElement(By.xpath("(//input[@type='text'])[20]")).sendKeys("16");
     driver.findElement(By.xpath("(//input[@value='Try!'])[3]")).click();
-    
     String result = driver.findElement(By.xpath("//li[@id='post--map_point-{info}-{lat}-{lng}']/div[2]/div/div[2]/div/pre[2]")).getText();
     assertEquals("200 OK", result.substring(0, 6));
   }
@@ -66,14 +62,10 @@ public class PostCase {
    * Is still functional.
    */
   @Test
-  public void testGet() throws Exception {
-	
+  public void testGetCase() throws Exception {
     driver.findElement(By.cssSelector("#get--MapPoints > div.heading.toggler")).click();
-    
     driver.findElement(By.xpath("//li[@id='get--MapPoints']/div[2]/ul/li[2]")).click();
-    
     driver.findElement(By.xpath("(//input[@value='Try!'])[2]")).click();
-    
     String result = driver.findElement(By.xpath("//li[@id='get--MapPoints']/div[2]/div/div[2]/div/pre[2]")).getText();
     assertEquals("200 OK", result.substring(0, 6));
   }
